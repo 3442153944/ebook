@@ -1,0 +1,82 @@
+import { compile } from 'vue'
+import {createRouter, createWebHistory} from 'vue-router'
+
+const routes=[
+    {
+        path:'/',
+        component:()=>import('../components/index.vue'),
+        name:'index',
+        children:[
+            {
+                path:'/',
+                name:'',
+                component:()=>import('../components/root/root.vue')
+            },
+            {
+                path:'/chat',
+                name:'chat',
+                component:()=>import('../components/head/head_box/chat_box.vue')
+            },
+            {
+                path:'/user_center',
+                name:'user_center',
+                component:()=>import('../components/user_center/user_center_index.vue'),
+                children:[
+                    {
+                        path:'/user_center',
+                        name:'user_center_index',
+                        component:()=>import('../components/user_center/sub_page/index.vue')
+                    },{
+                        path:'/user_center/account_center',
+                        name:'account_center',
+                        component:()=>import('../components/user_center/sub_page/account_center.vue')
+                    },{
+                        path:'/user_center/account_manage',
+                        name:'account_manage',
+                        component:()=>import('../components/user_center/sub_page/account_manage.vue')
+                    },{
+                       path:'/user_center/my_bookshelf',
+                        name:'my_bookshelf',
+                        component:()=>import('../components/user_center/sub_page/my_bookshelf.vue')
+                    },{
+                        path:'/user_center/my_comment',
+                        name:'my_comment',
+                        component:()=>import('../components/user_center/sub_page/my_comment.vue')
+                    },{
+                        path:'/user_center/my_wallet',
+                        name:'my_wallet',
+                        component:()=>import('../components/user_center/sub_page/my_wallet.vue')
+                    },{
+                        path:'/user_center/my_works',
+                        name:'my_works',
+                        component:()=>import('../components/user_center/sub_page/my_works.vue')
+                    },{
+                        path:'/user_center/writer_center',
+                        name:'writer_center',
+                        component:()=>import('../components/user_center/sub_page/writer_center.vue')
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        path:'/login',
+        name:'login',
+        component:()=>import('../components/login.vue'),
+    },
+    {
+        path:'/register',
+        name:'register',
+        component:()=>import('../components/register.vue'),
+    },
+    {
+        path:'/reset_password',
+        name:'reset_password',
+        component:()=>import('../components/reset_password.vue'),
+    }
+]
+
+export const router=createRouter({
+    history:createWebHistory(),
+    routes:routes
+})
