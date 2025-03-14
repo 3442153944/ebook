@@ -28,7 +28,7 @@ let menu_list=ref([
         path:'/user_center/my_wallet'
     },
     {
-        name:'账务中心',
+        name:'月票',
         path:'/user_center/account_center'
     },
     {

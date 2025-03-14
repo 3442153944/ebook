@@ -1,4 +1,3 @@
-import { compile } from 'vue'
 import {createRouter, createWebHistory} from 'vue-router'
 
 const routes=[
@@ -56,6 +55,11 @@ const routes=[
                         component:()=>import('../components/user_center/sub_page/writer_center.vue')
                     }
                 ]
+            },
+            {
+                path:'/book',
+                name:'book',
+                component:()=>import('../components/book/book_index.vue')
             }
         ]
     },
