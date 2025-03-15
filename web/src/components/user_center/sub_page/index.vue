@@ -11,6 +11,10 @@
         </div>
       </div>
     </div>
+    <span class="introduce">
+      <h2>个型签名：</h2>
+      {{ user.signature || '这个人很懒，什么都没有留下' }}
+    </span>
     <div class="content">
       <div class="item">
         <span class="title">

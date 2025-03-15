@@ -140,4 +140,30 @@ export class BaseApi {
             }
         })
     }
+    public  formatNumberCount(num:number) {
+        const units = [
+          { value: 1000000000000, symbol: '万亿' },
+          { value: 100000000, symbol: '亿' },
+          { value: 10000, symbol: '万' }
+        ];
+      
+        // 处理特殊情况
+        if (typeof num !== 'number' || isNaN(num)) return '0';
+        if (num === 0) return '0';
+      
+        // 查找匹配的单位
+        for (const unit of units) {
+          if (Math.abs(num) >= unit.value) {
+            const formatted = (num / unit.value).toFixed(1)
+              .replace(/\.0$/, '')  // 去除整数后的.0
+              .replace(/(\..)0$/, '$1'); // 保留有效小数位
+            return formatted + unit.symbol;
+          }
+        }
+      
+        // 小于最小单位时处理
+        return num >= 1000 ? 
+          Math.round(num).toLocaleString() : // 千以上添加逗号分隔
+          String(Math.floor(num));          // 千以下直接取整
+      }
 }

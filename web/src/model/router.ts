@@ -77,6 +77,11 @@ const routes=[
         path:'/reset_password',
         name:'reset_password',
         component:()=>import('../components/reset_password.vue'),
+    },
+    {
+        path:'/write',
+        name:'write',
+        component:()=>import('../components/write/write.vue')
     }
 ]
 
