@@ -132,17 +132,28 @@ class BaseApi(View):
     def format_file_request(self, request, file_name='file', data_name='data')->Union[bool, dict]:
         """格式化文件请求数据
             :param request: 传入请求，格式化请求数据
+            :param file_name:传入文件名称
+            :param data_name:传入数据字典名称可为空，为空时仅返回文件
             :return 返回格式化后的数据，或者格式化失败信息
         """
+        data={}
         try:
             file = request.FILES.get(file_name)
-            data = request.POST.get(data_name)
-            try:
-                data = json.loads(data)
-            except Exception as e:
-                logger.error(f"格式化请求失败,{self.error_log(e, request)}")
+            if not file:
+                print('文件为空')
+                logger.error(f"文件为空,{self.error_log('文件为空', request)}")
                 return False
+            if data_name:
+                print('有数据')
+                data = request.POST.get(data_name)
+                try:
+                    data = json.loads(data)
+                except Exception as e:
+                    print(e)
+                    logger.error(f"格式化请求失败,{self.error_log(e, request)}")
+                    return False
             return {'file': file, 'data': data}
         except Exception as e:
+            print(e)
             logger.error(f"格式化请求失败,{self.error_log(e, request)}")
             return False

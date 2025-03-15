@@ -60,6 +60,11 @@ const routes=[
                 path:'/book',
                 name:'book',
                 component:()=>import('../components/book/book_index.vue')
+            },
+            {
+                path:'/book_list',
+                name:'book_list',
+                component:()=>import('../components/root/sub_com/book_list.vue')
             }
         ]
     },

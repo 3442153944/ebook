@@ -13,7 +13,14 @@
 
 
 <script setup>
-import { ref } from 'vue'
+import { ref ,computed} from 'vue'
+import { useStore } from '@/model/store';
+
+const store = useStore();
+let is_self=computed(()=>{
+  return store.$state.is_self
+})
+
 let menu_list=ref([
     {
         name:'首页',
